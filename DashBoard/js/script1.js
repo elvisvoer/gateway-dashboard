@@ -77,7 +77,7 @@ window.onload = function(){
 		//Lets add the text
 		ctx.fillStyle = color;
 		ctx.font = "50px bebas";
-		text = Math.floor(degrees/360*100) + "%";
+		text = Math.floor(degrees/360*100) + "°";
 		//Lets center the text
 		//deducting half of text width from position x
 		text_width = ctx.measureText(text).width;
@@ -85,18 +85,8 @@ window.onload = function(){
 		//be measured easily. There are hacks but we will keep it manual for now.
 		ctx.fillText(text, W/2 - text_width/2, H/2 + 15);
 	}
-	
-		
-	//function to make the chart move to new degrees
-	function animate_to()
-	{
-		//clear animation loop if degrees reaches to new_degrees
-					
-		init();
-	}
-	
-	animate_to(22);
-	
+
+	init();
 	
 	
 	
