@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<link rel="stylesheet" type="text/css" href="css/foundation.min.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+	
+    <div class="row">
+    	<div class="small-6 large-centered columns">
+            <div style="height:100px"></div>
+            <div class="panel">
+              <h5>Temperature</h5>
+              <p>Your home temperature is: </p>
+            </div>
+            <div class="progress large alert radius">
+              <span class="meter" style="width: 60%"></span>
+            </div>
+        </div>
+        <div style="height:100px"></div>
+        <div class="small-6 large-centered columns"> 
+            <div class="panel">
+              <h5>Humidity</h5>
+              <p>Your home humidity is: </p>
+            </div>
+            <div class="progress large  radius">
+              <span class="meter" style="width: 30%"></span>
+            </div>
+        </div>
+        <div style="height:100px"></div>
+        <div class="small-6 large-centered columns"> 
+			<canvas id="canvas" width="300" height="300"/>
+        </div>
+    </div>
+
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/foundation.min.js"></script>
+<script type="text/javascript" src="js/jquery.sticky.js"></script>
+<script src="js/script1.js"></script>
+</body>
+</html>
