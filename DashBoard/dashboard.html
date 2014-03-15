@@ -10,35 +10,23 @@
 <body>
 	
     <div class="row">
-    	<div class="small-6 large-centered columns">
-            <div style="height:100px"></div>
-            <div class="panel">
-              <h5>Temperature</h5>
-              <p>Your home temperature is: </p>
-            </div>
-            <div class="progress large alert radius">
-              <span class="meter" style="width: 60%"></span>
-            </div>
-        </div>
-        <div style="height:100px"></div>
-        <div class="small-6 large-centered columns"> 
-            <div class="panel">
-              <h5>Humidity</h5>
-              <p>Your home humidity is: </p>
-            </div>
-            <div class="progress large  radius">
-              <span class="meter" style="width: 30%"></span>
-            </div>
-        </div>
-        <div style="height:100px"></div>
-        <div class="small-6 large-centered columns"> 
-			<canvas id="canvas" width="300" height="300"/>
-        </div>
+    <div class="small-4 large-centered columns"> 
+        <div style="height:100px;text-align:center;padding-top:75px;text-shadow: 2px 2px 5px #000000;color:#FF812B"><h4 style="
+    color: #FF812B;font-size:2em;">Temperature</h4></div>
+			<canvas id="temperature" width="300" height="300"/>
+     </div></div>
+  
+     <div class="row">
+     <div class="small-4 large-centered columns">    
+        <div style="height:50px;text-align:center;padding-top:25px;text-shadow: 2px 2px 5px #000000;color:#FF812B"><h4 style="
+    color: #00FFE3; font-size:2em;">Humidity</h4></div>
+        
+			<canvas id="humidity" width="300" height="300"/>
+        </div>        
     </div>
 
 <script src="js/jquery-1.9.1.min.js"></script>
 <script src="js/foundation.min.js"></script>
-<script type="text/javascript" src="js/jquery.sticky.js"></script>
 <script src="js/script1.js"></script>
 </body>
 </html>

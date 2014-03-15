@@ -100,5 +100,5 @@ body {
 
 @font-face {
 	font-family: "bebas";
-	src: url("http://thecodeplayer.com/uploads/fonts/BebasNeue.otf");
+	src: url(../other/BebasNeue.otf);
 }
