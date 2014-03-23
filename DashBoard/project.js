@@ -18,19 +18,27 @@ app.value("RoundWidget", null)
 // User object 
 var User = { token : 'BnFmMHroIllxSDbOaSXmUNF1ddYt9G94VAVnaC0w4GI' };
 	
-function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData) {
+function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData, Ninja) {
 
 	//var self = this;
 	// query the registered devices
+		
 	 Devices.get(function(d)
 	 {
-		var sensors = []
+		var sensors = [];
+		var ninjas = [];
 		for(var i in d.data)
 	    {
+			if(d.data[i].did == 1007)
+			{
+				ninjas.push({ id : i, data: d.data[i], value: '000000' });
+			}
 			// only devices that are sensors and not silent and has time series
 			if(d.data[i].is_sensor == 1 /*&& d.data[i].is_silent == 0*/ && d.data[i].has_time_series)
 				sensors.push( { id: i, data: d.data[i], value: 0 } );
 		}
+		console.log(ninjas[0]);
+		$scope.ninja = ninjas[0];
 		$scope.sensors = sensors;
 		console.log(d);
 		
@@ -65,6 +73,19 @@ function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData) 
 			}
 		}, 20000);
 	 });
+	 
+	$scope.changeColor = function(id, val)
+	{
+		Ninja.get({ id: id }, function(ninja)
+		{
+			console.log(ninja);
+				
+			ninja.update(id, val, function() {
+				console.log("Done");
+			});
+		});
+		
+	}
 
 	$scope.getBlocks = function(){
 		
@@ -97,6 +118,7 @@ function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData) 
 	*/
 }
 
+
 angular.module('device', [ 'ngResource' ]).factory(
 		'DeviceData',
 		function($resource) {
@@ -119,6 +141,26 @@ angular.module('device', [ 'ngResource' ]).factory(
 			});
 
 			//return Devices;
+		}).factory(
+		'Ninja',
+		function($resource) {
+			var user_access_token = User.token;
+			var Ninja = $resource('https://api.ninja.is/rest/v0/device/:id/?user_access_token=:token',
+			{
+				token : user_access_token,
+			});
+			
+			
+			Ninja.prototype.update = function(did, val, cb)
+			{
+				console.log(this);
+				return Ninja.save({ id : did }, {
+				'DA' : val
+				}, cb);
+			};
+			
+
+			return Ninja;
 		});
 		
 angular.module('blocks', [ 'ngResource' ]).factory(

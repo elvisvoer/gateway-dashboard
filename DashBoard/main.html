@@ -26,6 +26,33 @@
 <div class="container">
 	<div style="height:100px;"></div>
 	<div class="row">
+		<div class="col-md-4">
+			<div style="height:30px"></div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">{{ninja.data.default_name}}</h3>
+				  </div>
+				<div class="panel-body">
+					<div>
+					  <p>{{ninja.data.shortName}} 
+						<div class="input-group">
+						<span class="input-group-addon">#</span>
+						  <input type="text" class="form-control" ng-model="ninja.value">
+						  <span class="input-group-btn">
+							<button class="btn btn-default" type="button" ng-click="changeColor(ninja.id, ninja.value);">Change</button>
+						  </span>
+						</div><!-- /input-group -->
+					  </p>
+					  
+					</div>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%; background-color: #{{ninja.value}};">
+						<span class="sr-only"></span>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="col-md-4" ng-repeat="sensor in sensors">
 			<div style="height:30px"></div>
 			<div class="panel panel-default">
