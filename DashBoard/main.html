@@ -1,26 +1,75 @@
-<div class="row">
-	<div class="small-6 large-centered columns">
-		<div style="height:100px"></div>
-		<div class="panel">
-		  <h5>Temperature</h5>
-		  <p>Your home temperature is: {{temperature}}&deg;</p>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div style="margin-right:20px; margin-top:7px; float: right;">
+		<button class="btn btn-primary btn-lg" ng-click="getBlocks();" data-toggle="modal" data-target="#pair">
+		  Pair Block
+		</button>
+	</div>
+	<div class="container">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <a class="navbar-brand" href="#">Gateway</a>
 		</div>
-		<div class="progress large alert radius">
-		  <span class="meter" style="width: {{temperature}}%"></span>
+		<div class="collapse navbar-collapse">
+		  <ul class="nav navbar-nav">
+			<li class="active"><a href="#/">Home</a></li>
+			<li><a href="#/stats">Statistics</a></li>
+			<li><a href="#/settings">Settings</a></li>
+		  </ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</div>
+<div class="container">
+	<div style="height:100px;"></div>
+	<div class="row">
+		<div class="col-md-4" ng-repeat="sensor in sensors">
+			<div style="height:30px"></div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">{{sensor.data.default_name}}</h3>
+				  </div>
+				<div class="panel-body">
+					<div>
+					  <p>{{sensor.data.shortName}}: {{sensor.value}}</p>
+					</div>
+					<div class="progress">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="{{sensor.value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{sensor.value}}%;">
+						<span class="sr-only">{{sensor.value}}</span>
+					  </div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div style="height:100px"></div>
-	<div class="small-6 large-centered columns"> 
-		<div class="panel">
-		  <h5>Humidity</h5>
-		  <p>Your home humidity is: {{humidity}}%</p>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="pair" tabindex="-1">
+  <div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title" id="myModalLabel">Pair Block</h4>
 		</div>
-		<div class="progress large  radius">
-		  <span class="meter" style="width: {{humidity}}%"></span>
+		<div class="modal-body">
+			<div class="list-group">
+				<div class="list-group-item" ng-repeat="block in blocks">{{block.id}} <span style="float:right; cursor:pointer;" ng-click="unpairBlock(block.id);" class="glyphicon glyphicon-remove"></span></div>
+				<div class="list-group-item">
+						<div class="input-group">
+						  <input type="text" class="form-control">
+						  <span class="input-group-btn">
+							<button class="btn btn-default" type="button">Add</button>
+						  </span>
+						</div><!-- /input-group -->
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		</div>
 	</div>
-	<div style="height:100px"></div>
-	<div class="small-6 large-centered columns"> 
-		<canvas id="canvas" width="300" height="300"/>
-	</div>
+  </div>
 </div>
