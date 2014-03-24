@@ -1,4 +1,4 @@
 gateway-dashboard
 =================
 
-Dasboart
+Dashboard
