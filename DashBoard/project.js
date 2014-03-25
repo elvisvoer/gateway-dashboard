@@ -7,14 +7,6 @@ var app = angular.module('project', [ 'device', 'blocks' ]).config(function($rou
 	});
 });
 
-/*
-app.value("RoundWidget", null)
-   .factory("RoundWidget", function() { 
-		// returns anonymous object with Factory method 'createWidgets' which creates PWidgets
-		return { createWidget: function(id){ return new PWidget(id); } }; 
-});
-*/
-
 // User object 
 var User = { token : 'BnFmMHroIllxSDbOaSXmUNF1ddYt9G94VAVnaC0w4GI' };
 	
@@ -40,9 +32,9 @@ function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData, 
 		console.log(ninjas[0]);
 		$scope.ninja = ninjas[0];
 		$scope.sensors = sensors;
-		console.log(d);
+		console.log(sensors);
 		
-		
+		/*
 		setInterval( function (){
 			//temperature
 			var d = new Date();
@@ -71,7 +63,9 @@ function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData, 
 					}
 				})(i));
 			}
-		}, 20000);
+		}, 20000);*/
+
+
 	 });
 	 
 	$scope.changeColor = function(id, val)
