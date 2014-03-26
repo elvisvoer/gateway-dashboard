@@ -1,0 +1,15 @@
+#defaultCountdown { width: 240px; height: 45px; }
+
+#newCustomerForm {
+	
+	z-index: 20;
+	background-color: #DFFFC5;
+	height: 530px;
+	padding-top: 100px;
+	color:white;
+
+}
+
+#customerRecords {
+	text-align:center;
+	}

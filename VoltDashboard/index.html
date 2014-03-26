@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=1">
+    <title>Guide</title>
+    <link rel="stylesheet" type="text/css" href="css/foundation.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.countdown.css" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery.plugin.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/foundation.min.js"></script>
+</head>
+<body>
+
+	<div class="row">
+         <div id="bLogOut" class="small-3 columns small-offset-9 columns">
+    		<a  href="#" class="small alert button">Log Out</a>
+             <input type="text" placeholder="MockBattery" />	
+         </div>
+    </div>
+   
+    <div class="row">
+     	 <div style="height:20px" ></div>
+         <div style="margin-bottom:100px" class="large-3  large-centered columns "><img src="img/Volt-logo-hvid.png" /></div>     
+     </div> 
+     
+     
+     <div id="newCustomerForm" style="display:none" class="row">
+     	<div class="small-3 small-pull-2 columns"></div>
+        <div class="large-3 columns">
+          <label>Name
+            <input type="text" placeholder="Jimmy" />
+          </label>
+        </div>
+        <div class="large-3 columns">
+          <label>CPR Number
+            <input type="text" placeholder="141414 1414" />
+          </label>
+        </div>
+        <div class="large-3 columns">
+          <label>Battery</label>
+            <div  class="small-10 columns">
+              <a id="batteryField" href="#" class="button alert postfix">Scan</a>
+            </div>
+          
+        </div>
+        <div class="large-2 columns">
+          <div class="row collapse">
+            <div class="small-9 columns">
+              <label>Cable Type
+                <select>
+                  <option value="Apple">Apple</option>
+                  <option value="Android">Android</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>          
+        <div class="small-4 columns ">
+        <a id="cNC" href="#" class="small alert button">Cancel</a>       
+        </div>
+       	<div class="small-3 columns ">
+    		<a id="okNC" href="#" class="small success button expand">OK</a>       		      
+        </div>
+      </div>
+      
+      
+     
+    <div id="mainButtons" class="row">
+          <div class="large-6 columns">
+    		<a id="bNC" style="line-height:75px;background-color: greenyellow;font-size: 2em;" class="expand radius button">New Customer</a>
+          </div>
+          <div class="large-6 columns">
+            <a id="bCR" style="line-height:75px;background-color: greenyellow;font-size: 2em;" class="expand radius button">Check Records</a>
+          </div>
+    </div>
+    
+    
+    <div id="customerRecords" style="display:none" class="row">
+      	<table id="customerTable">
+          <thead>
+            <tr>
+              <th >Name</th>
+              <th width="150">CPR</th>
+              <th width="150">TimeStamp</th>
+              <th width="150">Battery</th>
+              <th width="50">Container</th>
+              <th width="50">Synced</th>
+              <th width="50">In/Out</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Elvis Priesley The Third</td>
+              <td>141414-2525</td>
+              <td>16/05/14-19:13:55</td>
+              <td>AAAAAAAAAA</td>
+              <td>A</td>
+              <td>NO</td>
+              <td>O</td>
+            </tr>
+            <tr>
+              <td>Ulrik Andersen</td>
+              <td>131313-5555</td>
+              <td>17/05/14-11:13:55</td>
+              <td>BBBBBBBBBB</td>
+              <td>A</td>
+              <td>NO</td>
+              <td>O</td>
+            </tr>
+            <tr>
+              <td>Tobias Aabye Dam </td>
+              <td>111111-1111</td>
+              <td>17/05/14-13:13:55</td>
+              <td>CCCCCCCCC</td>
+              <td>B</td>
+              <td>NO</td>
+              <td>O</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      
+    
+    <div class="row">
+    	<div style="height:200px" ></div>
+        
+                <div class="large-4 columns">
+                <p>Connected to Server</p>
+                </div>
+                
+            	<div class="large-2 large-pull-2 columns">
+                	<div class="progress small success radius">
+                <span class="meter" style="width: 100%"></span>
+                </div></div>
+                
+               <div class="large-1 columns">
+        	     <p>Next Sync</p>
+               </div>
+               <div class="large-2  columns">
+                 <div id="defaultCountdown"></div>
+               </div>
+            <div style="height:100px" ></div>
+        </div>
+    </div>
+    
+	<script src="js/cordova-2.0.0.js"></script>
+    <script src="js/VScript.js"></script>
+</body>
+</html>
