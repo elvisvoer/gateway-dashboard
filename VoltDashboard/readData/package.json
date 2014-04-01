@@ -1,0 +1,9 @@
+{
+    "name": "RealTimeDataReader",
+    "version": "0.0.0",
+    "description": "Real time data reader",
+    "dependencies": {
+        "socket.io-client": "latest"
+    },
+    "author": "Elvis"
+}
