@@ -8,15 +8,16 @@ socket = io.connect('localhost', {
 });
 socket.on('connect', function () { console.log("socket connected"); });
 
-process.nextTick(function() {
-setInterval(function() {
+socket.on('doScan', function (data) {	
+	var intv = setInterval(function() {
 
-  child = exec('top -b -n1| grep Cpu | awk \'{print $2}\'',
-  function (error, stdout, stderr) {
-    stdout.replace(/(\n|\r|\r\n)$/, '');
-    console.log("CPU is now at " + stdout);
-    socket.emit('send', { UID: stdout, reader: '0' });
-  });
+	child = exec('top -b -n1| grep Cpu | awk \'{print $2}\'',
+	function (error, stdout, stderr) {
+		stdout.replace(/(\n|\r|\r\n)$/, '');
+		console.log("DATA: " + stdout);
+		clearInterval(intv);
+		socket.emit('send', { UID: stdout, reader: '0' });
+	});
 
-  }, 1000);
+	}, 500);
 });
