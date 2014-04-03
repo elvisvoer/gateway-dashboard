@@ -1,0 +1,27 @@
+<div id="customerRecords" class="row">
+<table id="customerTable">
+  <thead>
+    <tr>
+      <th >Name</th>
+      <th width="150">TimeStamp</th>
+      <th width="150">Battery</th>
+      <th width="50">Reader</th>
+      <th width="50">Synced</th>
+      <th width="50">In/Out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="customer in customers">
+      <td>Ulrik Andersen</td>
+      <td>17/05/14-11:13:55</td>
+      <td>{{customer.UID}}</td>
+      <td>{{customer.reader}}</td>
+      <td>NO</td>
+      <td>O</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="small-4 columns ">
+	<a id="cNC" href="#/" class="small alert button">Back</a>       
+</div>

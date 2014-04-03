@@ -1,0 +1,8 @@
+<div id="mainButtons" class="row">
+  <div class="large-6 columns">
+	<a id="bNC" href="#/new" style="line-height:75px;background-color: greenyellow;font-size: 2em;" class="expand radius button">New Customer</a>
+  </div>
+  <div class="large-6 columns">
+    <a id="bCR" href="#/records" style="line-height:75px;background-color: greenyellow;font-size: 2em;" class="expand radius button">Check Records</a>
+  </div>
+</div>
