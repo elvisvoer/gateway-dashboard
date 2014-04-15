@@ -53,6 +53,28 @@
 				</div>
 			</div>
 		</div>
+		<div class="col-md-4">
+			<div style="height:30px"></div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">{{radio.data.default_name}}</h3>
+				  </div>
+				<div class="panel-body">
+					<div>
+					  <p>{{radio.data.shortName}} 
+						<div class="input-group" ng-repeat="subdevice in radio.subDevices" style="padding-bottom: 5px;">
+						<span class="input-group-addon">{{subdevice.dev.shortName}}</span>
+						  <input type="text" class="form-control" ng-model="subdevice.dev.data">
+						  <span class="input-group-btn">
+							<button class="btn btn-default" type="button" ng-click="sendRadio(radio.id, subdevice.id, subdevice.dev.data);">Push</button>
+						  </span>
+						</div><!-- /input-group -->
+					  </p>
+					  
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="col-md-4" ng-repeat="sensor in sensors">
 			<div style="height:30px"></div>
 			<div class="panel panel-default">

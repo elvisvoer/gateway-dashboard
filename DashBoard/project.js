@@ -10,7 +10,7 @@ var app = angular.module('project', [ 'device', 'blocks' ]).config(function($rou
 // User object 
 var User = { token : 'BnFmMHroIllxSDbOaSXmUNF1ddYt9G94VAVnaC0w4GI' };
 	
-function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData, Ninja) {
+function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData, Ninja, Radio) {
 
 	//var self = this;
 	// query the registered devices
@@ -19,6 +19,7 @@ function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData, 
 	 {
 		var sensors = [];
 		var ninjas = [];
+		var acturators = [];
 		for(var i in d.data)
 	    {
 			if(d.data[i].did == 1007)
@@ -27,14 +28,29 @@ function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData, 
 			}
 			// only devices that are sensors and not silent and has time series
 			if(d.data[i].is_sensor == 1 /*&& d.data[i].is_silent == 0*/ && d.data[i].has_time_series)
+			{
 				sensors.push( { id: i, data: d.data[i], value: 0 } );
+			}
+			else if(d.data[i].is_sensor == 1 && d.data[i].is_actuator == 1 && d.data[i].did == 11)
+			{
+				acturators.push( { id: i, data: d.data[i] } );	
+			}
+			
 		}
 		console.log(ninjas[0]);
 		$scope.ninja = ninjas[0];
 		$scope.sensors = sensors;
 		console.log(sensors);
 		
-		/*
+		$scope.radio = acturators[0];
+		$scope.radio["subDevices"] = [];
+		for(var i in $scope.radio.data.subDevices)
+		{
+			$scope.radio.subDevices.push( {id : i, dev : $scope.radio.data.subDevices[i]});
+		}	
+		console.log($scope.radio);
+		
+		
 		setInterval( function (){
 			//temperature
 			var d = new Date();
@@ -42,7 +58,6 @@ function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData, 
 			var from = now - 120000;
 			for(var i in sensors)
 			{
-//				console.log(sensors[i].id);
 				DeviceData.get({
 					id : sensors[i].id,
 					to : now,
@@ -63,7 +78,7 @@ function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData, 
 					}
 				})(i));
 			}
-		}, 20000);*/
+		}, 20000);
 
 
 	 });
@@ -106,10 +121,18 @@ function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData, 
 			});
 		});
 	};
-	
-	/*
-	
-	*/
+
+	$scope.sendRadio = function(guid, sid, data)
+	{
+		console.log("Send data: "+ data + " for device: "+ guid + " subdevice "+ sid);
+		
+		var radio = new Radio();
+				
+			radio.update(guid, sid, data, function() {
+				console.log("Done");
+			});
+	}
+
 }
 
 
@@ -155,6 +178,28 @@ angular.module('device', [ 'ngResource' ]).factory(
 			
 
 			return Ninja;
+		}).factory(
+		'Radio',
+		function($resource) {
+			var user_access_token = User.token;
+			var Radio = $resource('https://api.ninja.is/rest/v0/device/:id/subdevice/:subdeviceId?user_access_token=:token',
+			{
+				token : user_access_token,
+			}, {
+				'update': { method:'PUT' }
+			});
+			
+			
+			Radio.prototype.update = function(gid, sid, val, cb)
+			{
+				console.log(this);
+				return Radio.update({ id : gid, subdeviceId : sid }, {
+				'data' : val
+				}, cb);
+			};
+			
+
+			return Radio;
 		});
 		
 angular.module('blocks', [ 'ngResource' ]).factory(
@@ -173,5 +218,4 @@ angular.module('blocks', [ 'ngResource' ]).factory(
 			};
 
 			return Block;
-		});
-		
+		});		
