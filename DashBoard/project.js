@@ -128,9 +128,9 @@ function IndexCtrl($scope, $location, $routeParams, Block, Devices, DeviceData, 
 		
 		var radio = new Radio();
 				
-			radio.update(guid, sid, data, function() {
-				console.log("Done");
-			});
+		radio.update(guid, sid, data, function() {
+			console.log("Done");
+		});
 	}
 
 }
@@ -182,19 +182,19 @@ angular.module('device', [ 'ngResource' ]).factory(
 		'Radio',
 		function($resource) {
 			var user_access_token = User.token;
-			var Radio = $resource('https://api.ninja.is/rest/v0/device/:id/subdevice/:subdeviceId?user_access_token=:token',
+			var Radio = $resource('https://api.ninja.is/rest/v0/device/:id/?user_access_token=:token',
 			{
 				token : user_access_token,
 			}, {
-				'update': { method:'PUT' }
+				'update': { method:'POST' }
 			});
 			
 			
 			Radio.prototype.update = function(gid, sid, val, cb)
 			{
 				console.log(this);
-				return Radio.update({ id : gid, subdeviceId : sid }, {
-				'data' : val
+				return Radio.update({ id : gid }, {
+				'DA' : val
 				}, cb);
 			};
 			
