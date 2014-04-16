@@ -186,7 +186,7 @@ angular.module('device', [ 'ngResource' ]).factory(
 			{
 				token : user_access_token,
 			}, {
-				'update': { method:'POST' }
+				'update': { method:'PUT' }
 			});
 			
 			
