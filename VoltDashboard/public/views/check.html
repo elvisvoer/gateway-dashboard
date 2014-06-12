@@ -1,19 +1,29 @@
 <div id="customerRecords" class="row">
-<table id="customerTable">
+<div class="large-4 columns">
+      <input id="readerbox1" type="checkbox" ng-model="search.reader" ng-true-value="0" ng-false-value=""><label for="readerbox1">Reader 0</label>
+      <input id="readerbox2" type="checkbox" ng-model="search.reader" ng-true-value="1" ng-false-value=""><label for="readerbox2">Reader 1</label>
+    </div>  
+    <div class="large-4 large-offset-2 columns">
+          <label for="search-label" class="right">Search</label>
+        </div>
+        <div class="large-2 columns">
+          <input type="text" id="search-label" placeholder="User Info" ng-model="search.$">
+        </div>
+<table id="customerTable" class="large-12 columns">
   <thead>
     <tr>
-      <th >Name</th>
-      <th width="150">TimeStamp</th>
-      <th width="150">Battery</th>
-      <th width="50">Reader</th>
-      <th width="50">Synced</th>
-      <th width="50">In/Out</th>
+      <th>Name</th>
+      <th>TimeStamp</th>
+      <th>Battery</th>
+      <th>Reader</th>
+      <th>Synced</th>
+      <th>In/Out</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="customer in customers">
+    <tr ng-repeat="customer in customers | filter:search">
       <td>Ulrik Andersen</td>
-      <td>17/05/14-11:13:55</td>
+      <td>{{customer.time}}</td>
       <td>{{customer.UID}}</td>
       <td>{{customer.reader}}</td>
       <td>NO</td>
