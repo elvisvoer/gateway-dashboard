@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="socket.io.js"></script>
+<script>
+window.onload = function() {
+ 
+    var messages = [];
+    var socket = io.connect('http://169.254.8.205:3700');
+    var field = document.getElementById("data");
+ 
+    socket.on('data', function (data) {
+        	document.getElementById('data').innerHTML += "<p>" + JSON.stringify(data) + "</p>";	
+            console.log("", data);
+    });
+}
+</script>
+</head>
+<body>
+
+<div id="data"></div>
+
+
+</body>
+</html>
